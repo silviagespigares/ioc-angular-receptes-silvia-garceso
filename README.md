@@ -1,59 +1,53 @@
-# IocAngularReceptesSilviaGarceso
+# Receptes de Silvia Garceso
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.8.
+## Autora
 
-## Development server
+Silvia Garceso
 
-To start a local development server, run:
+## Descripció
+
+Aplicació web desenvolupada amb Angular per gestionar i consultar receptes de cuina de manera senzilla.
+
+Aquest projecte forma part de l'EAC1 i servirà com a base per desenvolupar l'aplicació de receptes en els següents EAC.
+
+## Versions utilitzades
+
+* Node.js: 24.20.0
+* npm: 11.19.0
+* Angular CLI: 22.2.0
+* Angular: 22.2.0
+* Git: 2.54.0
+
+## Com crear i executar el projecte
+
+Per instal·lar les dependències del projecte:
+
+```bash
+npm install
+```
+
+Per executar l'aplicació en mode desenvolupament:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Un cop iniciat el servidor, obrir el navegador a:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```text
+http://localhost:4200/
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+L'aplicació utilitza hot reload, de manera que els canvis realitzats als fitxers del projecte s'actualitzen automàticament al navegador.
 
-```bash
-ng generate --help
-```
+## Estat de l'EAC1
 
-## Building
+EAC1 completat.
 
-To build the project run:
+En aquest EAC s'ha creat i configurat el projecte Angular, s'ha inicialitzat el repositori Git, s'han creat les branques de treball i s'ha personalitzat la pàgina inicial de l'aplicació.
 
-```bash
-ng build
-```
+També s'ha comprovat l'execució de l'aplicació amb `ng serve` i el funcionament del hot reload.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Enllaç del repositori
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+https://github.com/silviagespigares/ioc-angular-receptes-silvia-garceso
