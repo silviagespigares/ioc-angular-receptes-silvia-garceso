@@ -1,0 +1,21 @@
+
+<article class="targeta">
+  <h3>{{ recepta.nom }}</h3>
+
+  <app-categoria-etiqueta [categoria]="recepta.categoria" />
+
+  <p>{{ recepta.descripcio }}</p>
+
+  <p>
+    <strong>Temps de preparació:</strong>
+    {{ recepta.tempsPreparacio }} minuts
+  </p>
+
+  @if (recepta.destacada) {
+    <p class="destacada">⭐ Recepta destacada</p>
+  }
+
+  <button type="button" (click)="seleccionarRecepta()">
+    Veure selecció
+  </button>
+</article>

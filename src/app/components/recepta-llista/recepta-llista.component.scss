@@ -1,0 +1,17 @@
+
+.llista {
+  margin-top: 1.5rem;
+}
+
+.graella {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+@media (max-width: 600px) {
+  .graella {
+    grid-template-columns: 1fr;
+  }
+}

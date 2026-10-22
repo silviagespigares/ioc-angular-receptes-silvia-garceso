@@ -1,0 +1,17 @@
+
+<section class="llista">
+  <h2>Llistat de receptes</h2>
+
+  @if (receptes.length > 0) {
+    <div class="graella">
+      @for (recepta of receptes; track recepta.id) {
+        <app-recepta-targeta
+          [recepta]="recepta"
+          (seleccionada)="seleccionarRecepta($event)"
+        />
+      }
+    </div>
+  } @else {
+    <p>No s'han trobat receptes amb aquests filtres.</p>
+  }
+</section>

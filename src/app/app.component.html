@@ -1,24 +1,33 @@
-<main class="container">
 
-  <h1>{{ appName }}</h1>
+<main class="contenidor">
+  <header class="capcalera">
+    <h1>{{ appName }}</h1>
+    <p>Descobreix receptes casolanes per a tots els gustos.</p>
+  </header>
 
-  <p>
-    Aplicació creada per Silvia Garceso per gestionar i consultar
-    receptes de cuina de manera senzilla.
-  </p>
+  <app-recepta-filtres
+    [categories]="categories"
+    (categoriaCanviada)="aplicarFiltre($event)"
+  />
 
-  <section class="project-card">
-    <h2>Dades del projecte</h2>
+  @if (receptaSeleccionada; as recepta) {
+    <section class="seleccio" aria-live="polite">
+      <p>
+        Has seleccionat:
+        <strong>{{ recepta.nom }}</strong>
+      </p>
+      <button type="button" (click)="receptaSeleccionada = null">
+        Tancar
+      </button>
+    </section>
+  }
 
-    <p>Projecte: ioc-angular-receptes-silvia-garceso</p>
-    <p>Framework: Angular</p>
-    <p>Estils: SCSS</p>
-  </section>
+  <app-recepta-llista
+    [receptes]="receptesFiltrades"
+    (receptaSeleccionada)="seleccionarRecepta($event)"
+  />
 
-  <aside>
-    Nota: aquest projecte és la base de l'aplicació de receptes.
-  </aside>
-
-  <p>Projecte base llest</p>
-
+  <footer>
+    <p>Projecte Angular — EAC2</p>
+  </footer>
 </main>

@@ -1,0 +1,77 @@
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+.targeta {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 1.35rem;
+  border: 1px solid #eee2d5;
+  border-radius: 17px;
+  background-color: #fffdf9;
+  box-shadow: 0 4px 14px rgb(102 80 68 / 5%);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.targeta:hover {
+  transform: translateY(-3px);
+  border-color: #d9c2ae;
+  box-shadow: 0 8px 22px rgb(102 80 68 / 9%);
+}
+
+.targeta h3 {
+  margin: 0 0 1rem;
+  color: #665044;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.targeta > p {
+  color: #79685a;
+  line-height: 1.65;
+}
+
+.targeta .destacada {
+  color: #956c49;
+  font-weight: 600;
+}
+
+.targeta button {
+  margin-top: 0.5rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid #a98772;
+  border-radius: 9px;
+  background-color: #a98772;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 160ms ease;
+}
+
+.targeta button:hover {
+  background-color: #896b59;
+}
+
+.targeta button:focus-visible {
+  outline: 3px solid #d7bca7;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .targeta,
+  .targeta button {
+    transition: none;
+  }
+
+  .targeta:hover {
+    transform: none;
+  }
+}
