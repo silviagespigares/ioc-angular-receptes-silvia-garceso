@@ -2,12 +2,20 @@
 .filtres {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 0.85rem;
-  padding: 1.1rem 1.25rem;
+  align-items: flex-end;
+  gap: 1rem;
+  padding: 1.25rem;
   border: 1px solid #eadfd2;
   border-radius: 15px;
   background-color: #f3e9de;
+}
+
+.camp {
+  display: flex;
+  flex: 1 1 220px;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
 }
 
 label {
@@ -15,6 +23,7 @@ label {
   font-weight: 600;
 }
 
+input,
 select,
 button {
   box-sizing: border-box;
@@ -25,10 +34,32 @@ button {
   font: inherit;
 }
 
+input,
 select {
+  width: 100%;
   max-width: 100%;
   background-color: #fffdf9;
   color: #665044;
+}
+
+input:focus-visible,
+select:focus-visible,
+button:focus-visible {
+  outline: 3px solid #d7bca7;
+  outline-offset: 3px;
+}
+
+.error {
+  margin: 0;
+  color: #a13d32;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.accions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
 }
 
 button {
@@ -39,14 +70,23 @@ button {
   transition: background-color 160ms ease;
 }
 
-button:hover {
+button:hover:not(:disabled) {
   background-color: #896b59;
 }
 
-select:focus-visible,
-button:focus-visible {
-  outline: 3px solid #d7bca7;
-  outline-offset: 3px;
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.boto-restablir {
+  border-color: #d9c4b2;
+  background-color: #fffdf9;
+  color: #665044;
+}
+
+button.boto-restablir:hover {
+  background-color: #eadfd2;
 }
 
 @media (max-width: 600px) {
@@ -55,8 +95,22 @@ button:focus-visible {
     flex-direction: column;
   }
 
-  select,
+  .camp,
+  .accions {
+    width: 100%;
+  }
+
+  .accions {
+    flex-direction: column;
+  }
+
   button {
     width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition: none;
   }
 }

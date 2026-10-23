@@ -5,10 +5,10 @@
     <p>Descobreix receptes casolanes per a tots els gustos.</p>
   </header>
 
-  <app-recepta-filtres
-    [categories]="categories"
-    (categoriaCanviada)="aplicarFiltre($event)"
-  />
+<app-recepta-filtres
+  [categories]="categories"
+  (filtreAplicat)="aplicarFiltre($event)"
+/>
 
   @if (receptaSeleccionada; as recepta) {
     <section class="seleccio" aria-live="polite">

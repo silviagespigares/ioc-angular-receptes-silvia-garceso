@@ -11,11 +11,25 @@ import { FormsModule } from '@angular/forms';
 export class ReceptaFiltresComponent {
   @Input() categories: string[] = [];
 
-  @Output() categoriaCanviada = new EventEmitter<string>();
+  @Output() filtreAplicat = new EventEmitter<{
+    text: string;
+    categoria: string;
+  }>();
 
+  textCerca = '';
   categoriaSeleccionada = '';
 
-  aplicarFiltre(): void {
-    this.categoriaCanviada.emit(this.categoriaSeleccionada);
+aplicarFiltre(): void {
+  this.filtreAplicat.emit({
+    text: this.textCerca.trim(),
+    categoria: this.categoriaSeleccionada,
+  });
+}
+
+  restablirFiltres(): void {
+    this.textCerca = '';
+    this.categoriaSeleccionada = '';
+
+    this.aplicarFiltre();
   }
 }

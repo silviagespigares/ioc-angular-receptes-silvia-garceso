@@ -21,6 +21,7 @@ export class App {
 
   receptes: Recepta[] = RECEPTES_MOCK;
 
+  textCerca = '';
   categoriaSeleccionada = '';
 
   receptaSeleccionada: Recepta | null = null;
@@ -30,19 +31,26 @@ export class App {
   }
 
   get receptesFiltrades(): Recepta[] {
-    if (!this.categoriaSeleccionada) {
-      return this.receptes;
-    }
+    return this.receptes.filter((recepta) => {
+      const text = this.textCerca.toLocaleLowerCase();
 
-    return this.receptes.filter(
-      (recepta) => recepta.categoria === this.categoriaSeleccionada,
-    );
+      const coincideixText =
+        recepta.nom.toLocaleLowerCase().includes(text) ||
+        recepta.descripcio.toLocaleLowerCase().includes(text);
+
+      const coincideixCategoria =
+        !this.categoriaSeleccionada ||
+        recepta.categoria === this.categoriaSeleccionada;
+
+      return coincideixText && coincideixCategoria;
+    });
   }
 
-  aplicarFiltre(categoria: string): void {
-    this.categoriaSeleccionada = categoria;
-    this.receptaSeleccionada = null;
-  }
+aplicarFiltre(filtre: { text: string; categoria: string }): void {
+  this.textCerca = filtre.text;
+  this.categoriaSeleccionada = filtre.categoria;
+  this.receptaSeleccionada = null;
+}
 
   seleccionarRecepta(recepta: Recepta): void {
     this.receptaSeleccionada = recepta;
