@@ -15,7 +15,7 @@
     />
 
     @if (textCercaControl.invalid && (textCercaControl.dirty || textCercaControl.touched)) {
-      <p class="error">
+      <p class="error" role="alert">
         @if (textCercaControl.errors?.['required']) {
           El text de cerca és obligatori.
         } @else if (textCercaControl.errors?.['minlength']) {

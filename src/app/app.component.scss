@@ -7,6 +7,27 @@
   font-family: "Segoe UI", Arial, sans-serif;
 }
 
+
+.enllac-saltar {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 1000;
+  padding: 0.75rem 1rem;
+  transform: translateY(-150%);
+  border: 2px solid #a98772;
+  border-radius: 8px;
+  background-color: #fffdf9;
+  color: #665044;
+  font-weight: 700;
+}
+
+.enllac-saltar:focus {
+  transform: translateY(0);
+  outline: 3px solid #d7bca7;
+  outline-offset: 3px;
+}
+
 .contenidor {
   width: min(1100px, calc(100% - 2rem));
   margin: 0 auto;

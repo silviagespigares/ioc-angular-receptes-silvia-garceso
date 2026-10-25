@@ -6,48 +6,81 @@ Silvia Garceso
 
 ## Descripció
 
-Aplicació web desenvolupada amb Angular per gestionar i consultar receptes de cuina de manera senzilla.
+Aplicació web desenvolupada amb Angular per consultar, filtrar i seleccionar receptes de cuina.
 
-Aquest projecte forma part de l'EAC1 i servirà com a base per desenvolupar l'aplicació de receptes en els següents EAC.
+El projecte forma part dels exercicis d'avaluació contínua (EAC) i es desenvolupa progressivament mitjançant components reutilitzables, comunicació entre components, filtres i millores d'accessibilitat.
 
 ## Versions utilitzades
 
-* Node.js: 24.20.0
-* npm: 11.19.0
-* Angular CLI: 22.2.0
-* Angular: 22.2.0
-* Git: 2.54.0
+- Node.js: 24.20.0
+- npm: 11.19.0
+- Angular CLI: 22.2.0
+- Angular: 22.2.0
+- TypeScript: 6.0.3
+- Git: 2.54.0
 
-## Com crear i executar el projecte
+## Instal·lació i execució
 
-Per instal·lar les dependències del projecte:
+Instal·lar les dependències:
 
 ```bash
 npm install
 ```
 
-Per executar l'aplicació en mode desenvolupament:
+Iniciar l'aplicació en mode desenvolupament:
 
 ```bash
 ng serve
 ```
 
-Un cop iniciat el servidor, obrir el navegador a:
+Obrir al navegador:
 
 ```text
 http://localhost:4200/
 ```
 
-L'aplicació utilitza hot reload, de manera que els canvis realitzats als fitxers del projecte s'actualitzen automàticament al navegador.
+Generar una compilació de producció:
 
-## Estat de l'EAC1
+```bash
+ng build
+```
 
-EAC1 completat.
+Els canvis realitzats durant el desenvolupament s'actualitzen automàticament al navegador quan és possible.
 
-En aquest EAC s'ha creat i configurat el projecte Angular, s'ha inicialitzat el repositori Git, s'han creat les branques de treball i s'ha personalitzat la pàgina inicial de l'aplicació.
+## Components creats
 
-També s'ha comprovat l'execució de l'aplicació amb `ng serve` i el funcionament del hot reload.
+- **ReceptaLlistaComponent:** mostra el llistat de receptes i gestiona els estats de llista amb resultats o sense resultats.
+- **ReceptaTargetaComponent:** mostra la informació de cada recepta i permet seleccionar-la.
+- **CategoriaEtiquetaComponent:** mostra la categoria d'una recepta.
+- **ReceptaFiltresComponent:** permet cercar receptes per nom o descripció i filtrar-les per categoria.
 
-## Enllaç del repositori
+## Funcionalitats implementades
+
+- Model de dades `Recepta` i dades de prova.
+- Comunicació entre components mitjançant propietats d'entrada i esdeveniments de sortida.
+- Cerca per nom o descripció i filtre per categoria.
+- Validació del formulari de cerca: camp obligatori i mínim de tres caràcters.
+- Restabliment dels filtres.
+- Visualització del nombre de receptes i missatge quan no hi ha resultats.
+- Selecció d'una recepta i visualització del seu detall.
+- Format de dates amb `DatePipe`.
+- Control de flux d'Angular amb `@if` i `@for`.
+- Accessibilitat: enllaç per saltar al contingut principal, etiquetes associades als camps, indicadors de focus i missatges accessibles.
+- Disseny responsive amb CSS Grid i regles `@media` per adaptar la interfície a pantalles petites.
+
+## Branca de treball
+
+Branca utilitzada per al desenvolupament de l'EAC2:
+
+```text
+ra2-components
+```
+
+## Estat del projecte
+
+- **EAC1:** projecte Angular creat, configurat i personalitzat.
+- **EAC2:** model i dades de receptes, components, comunicació entre components, filtres, detall de receptes, accessibilitat i adaptació responsive.
+
+## Repositori
 
 https://github.com/silviagespigares/ioc-angular-receptes-silvia-garceso
