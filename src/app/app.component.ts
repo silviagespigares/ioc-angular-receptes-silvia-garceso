@@ -5,11 +5,13 @@ import { Recepta } from './models/recepta.model';
 import { RECEPTES_MOCK } from './data/receptes.mock';
 import { ReceptaLlistaComponent } from './components/recepta-llista/recepta-llista.component';
 import { ReceptaFiltresComponent } from './components/recepta-filtres/recepta-filtres.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet,
+    DatePipe,
     ReceptaLlistaComponent,
     ReceptaFiltresComponent,
   ],

@@ -10,17 +10,31 @@
   (filtreAplicat)="aplicarFiltre($event)"
 />
 
-  @if (receptaSeleccionada; as recepta) {
-    <section class="seleccio" aria-live="polite">
-      <p>
-        Has seleccionat:
-        <strong>{{ recepta.nom }}</strong>
-      </p>
-      <button type="button" (click)="receptaSeleccionada = null">
-        Tancar
-      </button>
-    </section>
-  }
+@if (receptaSeleccionada; as recepta) {
+  <section class="seleccio" aria-live="polite">
+    <h2>Detall de la recepta</h2>
+
+    <p>
+      Has seleccionat:
+      <strong>{{ recepta.nom }}</strong>
+    </p>
+
+    <p><strong>Descripció:</strong> {{ recepta.descripcio }}</p>
+    <p><strong>Categoria:</strong> {{ recepta.categoria }}</p>
+    <p>
+      <strong>Temps de preparació:</strong>
+      {{ recepta.tempsPreparacio }} minuts
+    </p>
+    <p>
+      <strong>Data de creació:</strong>
+      {{ recepta.dataCreacio | date:'dd/MM/yyyy' }}
+    </p>
+
+    <button type="button" (click)="receptaSeleccionada = null">
+      Tancar
+    </button>
+  </section>
+}
 
   <app-recepta-llista
     [receptes]="receptesFiltrades"

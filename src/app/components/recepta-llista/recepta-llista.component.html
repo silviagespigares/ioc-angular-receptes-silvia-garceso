@@ -1,6 +1,9 @@
-
 <section class="llista">
   <h2>Llistat de receptes</h2>
+
+  <p class="comptador" aria-live="polite">
+    Nombre de receptes: {{ receptes.length }}
+  </p>
 
   @if (receptes.length > 0) {
     <div class="graella">
@@ -12,6 +15,8 @@
       }
     </div>
   } @else {
-    <p>No s'han trobat receptes amb aquests filtres.</p>
+    <p class="buit" role="status">
+      No s'han trobat receptes amb aquests filtres.
+    </p>
   }
 </section>
