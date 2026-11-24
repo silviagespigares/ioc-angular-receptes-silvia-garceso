@@ -20,7 +20,7 @@ import { ReceptesApiService } from './services/receptes-api.service';
   templateUrl: './app.component.html',
 })
 export class App implements OnInit {
-  private readonly receptesApi = inject(ReceptesApiService);
+  public readonly receptesApi = inject(ReceptesApiService);
 
   public appName = 'Receptes de Silvia Garceso';
 
@@ -30,6 +30,7 @@ export class App implements OnInit {
   categoriaSeleccionada = '';
 
   receptaSeleccionada: Recepta | null = null;
+  missatgeCreacio = '';
 
   ngOnInit(): void {
     this.receptesApi.obtenirReceptes().subscribe({
@@ -40,6 +41,34 @@ export class App implements OnInit {
         console.error('Error en carregar les receptes de l’API:', error);
       }
     });
+  }
+
+  crearReceptaProva(): void {
+    const novaRecepta: Omit<Recepta, 'id'> = {
+      nom: 'Coca de recapte EAC3',
+      descripcio: 'Coca casolana amb verdures escalivades.',
+      categoria: 'plats principals',
+      dataCreacio: new Date().toISOString().slice(0, 10),
+      tempsPreparacio: 45,
+      destacada: false
+    };
+
+    this.missatgeCreacio = '';
+
+    this.receptesApi.crearRecepta(novaRecepta).subscribe({
+      next: (receptaCreada) => {
+        this.receptes = [...this.receptes, receptaCreada];
+        this.missatgeCreacio = 'Recepta creada correctament a l’API.';
+      },
+      error: (error) => {
+        console.error('Error en crear la recepta:', error);
+        this.missatgeCreacio = 'No s’ha pogut crear la recepta.';
+      }
+    });
+  }
+
+  reintentarCarrega(): void {
+    this.receptesApi.reintentar();
   }
 
   get categories(): string[] {

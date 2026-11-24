@@ -1,3 +1,4 @@
+
 <a class="enllac-saltar" href="#contingut-principal">
   Salta al contingut principal
 </a>
@@ -8,36 +9,59 @@
     <p>Descobreix receptes casolanes per a tots els gustos.</p>
   </header>
 
-<app-recepta-filtres
-  [categories]="categories"
-  (filtreAplicat)="aplicarFiltre($event)"
-/>
+  <section aria-labelledby="estat-api">
+    <h2 id="estat-api">Estat de la connexió amb l'API</h2>
 
-@if (receptaSeleccionada; as recepta) {
-  <section class="seleccio" aria-live="polite">
-    <h2>Detall de la recepta</h2>
+    @if (receptesApi.carregant()) {
+      <p role="status">Carregant receptes...</p>
+    }
 
-    <p>
-      Has seleccionat:
-      <strong>{{ recepta.nom }}</strong>
-    </p>
+    @if (receptesApi.error()) {
+      <p role="alert">{{ receptesApi.error() }}</p>
+      <button type="button" (click)="reintentarCarrega()">
+        Tornar a intentar
+      </button>
+    }
 
-    <p><strong>Descripció:</strong> {{ recepta.descripcio }}</p>
-    <p><strong>Categoria:</strong> {{ recepta.categoria }}</p>
-    <p>
-      <strong>Temps de preparació:</strong>
-      {{ recepta.tempsPreparacio }} minuts
-    </p>
-    <p>
-      <strong>Data de creació:</strong>
-      {{ recepta.dataCreacio | date:'dd/MM/yyyy' }}
-    </p>
-
-    <button type="button" (click)="receptaSeleccionada = null">
-      Tancar
+    <button type="button" (click)="crearReceptaProva()">
+      Crear recepta de prova (POST)
     </button>
+
+    @if (missatgeCreacio) {
+      <p role="status">{{ missatgeCreacio }}</p>
+    }
   </section>
-}
+
+  <app-recepta-filtres
+    [categories]="categories"
+    (filtreAplicat)="aplicarFiltre($event)"
+  />
+
+  @if (receptaSeleccionada; as recepta) {
+    <section class="seleccio" aria-live="polite">
+      <h2>Detall de la recepta</h2>
+
+      <p>
+        Has seleccionat:
+        <strong>{{ recepta.nom }}</strong>
+      </p>
+
+      <p><strong>Descripció:</strong> {{ recepta.descripcio }}</p>
+      <p><strong>Categoria:</strong> {{ recepta.categoria }}</p>
+      <p>
+        <strong>Temps de preparació:</strong>
+        {{ recepta.tempsPreparacio }} minuts
+      </p>
+      <p>
+        <strong>Data de creació:</strong>
+        {{ recepta.dataCreacio | date:'dd/MM/yyyy' }}
+      </p>
+
+      <button type="button" (click)="receptaSeleccionada = null">
+        Tancar
+      </button>
+    </section>
+  }
 
   <app-recepta-llista
     [receptes]="receptesFiltrades"
@@ -45,6 +69,6 @@
   />
 
   <footer>
-    <p>Projecte Angular — EAC2</p>
+    <p>Projecte Angular — EAC3</p>
   </footer>
 </main>
