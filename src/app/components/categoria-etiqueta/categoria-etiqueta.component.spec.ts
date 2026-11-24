@@ -1,21 +1,26 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CategoriaEtiqueta } from './categoria-etiqueta.component';
+import { CategoriaEtiquetaComponent } from './categoria-etiqueta.component';
 
-describe('CategoriaEtiqueta', () => {
-  let component: CategoriaEtiqueta;
-  let fixture: ComponentFixture<CategoriaEtiqueta>;
+describe('CategoriaEtiquetaComponent', () => {
+  let component: CategoriaEtiquetaComponent;
+  let fixture: ComponentFixture<CategoriaEtiquetaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CategoriaEtiqueta],
+      imports: [CategoriaEtiquetaComponent]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CategoriaEtiqueta);
+    fixture = TestBed.createComponent(CategoriaEtiquetaComponent);
+    fixture.componentRef.setInput('categoria', 'postres');
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('hauria de crear el component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('hauria de rebre la categoria indicada', () => {
+    expect(component.categoria).toBe('postres');
   });
 });

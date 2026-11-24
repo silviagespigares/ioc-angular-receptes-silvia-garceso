@@ -6,9 +6,7 @@ Silvia Garceso
 
 ## Descripció
 
-Aplicació web desenvolupada amb Angular per consultar, filtrar i seleccionar receptes de cuina.
-
-El projecte forma part dels exercicis d'avaluació contínua (EAC) i es desenvolupa progressivament mitjançant components reutilitzables, comunicació entre components, filtres i millores d'accessibilitat.
+Aplicació web desenvolupada amb Angular per consultar, cercar, filtrar i seleccionar receptes de cuina. El projecte incorpora una API local amb `json-server`, serveis HTTP, models i adaptadors de dades, formularis reactius amb validacions i historial de cerques.
 
 ## Versions utilitzades
 
@@ -19,7 +17,14 @@ El projecte forma part dels exercicis d'avaluació contínua (EAC) i es desenvol
 - TypeScript: 6.0.3
 - Git: 2.54.0
 
-## Instal·lació i execució
+## Instal·lació
+
+Clonar el repositori:
+
+```bash
+git clone https://github.com/silviagespigares/ioc-angular-receptes-silvia-garceso.git
+cd ioc-angular-receptes-silvia-garceso
+```
 
 Instal·lar les dependències:
 
@@ -27,59 +32,101 @@ Instal·lar les dependències:
 npm install
 ```
 
-Iniciar l'aplicació en mode desenvolupament:
+## Execució del projecte
+
+Cal iniciar l'API i l'aplicació Angular en dos terminals diferents.
+
+**Terminal 1 — API local:**
+
+```bash
+npm run api
+```
+
+L'API s'executa al port `3000`.
+
+- Llistat de receptes: `http://localhost:3000/receptes`
+- Recepta per identificador: `http://localhost:3000/receptes/1`
+
+Les dades de l'API es troben a `server/db.json`.
+
+**Terminal 2 — Aplicació Angular:**
 
 ```bash
 ng serve
 ```
 
-Obrir al navegador:
+Obrir l'aplicació a:
 
 ```text
 http://localhost:4200/
 ```
 
-Generar una compilació de producció:
+## Compilació
+
+Per comprovar que el projecte compila correctament:
 
 ```bash
-ng build
+npm run build
 ```
 
-Els canvis realitzats durant el desenvolupament s'actualitzen automàticament al navegador quan és possible.
+## API, serveis i dades
 
-## Components creats
+- `server/db.json`: base de dades local amb 10 receptes.
+- `src/app/config/api.config.ts`: configuració de la URL base de l'API (`http://localhost:3000`).
+- `src/app/services/receptes-api.service.ts`: servei HTTP per consultar i crear receptes, gestionar estats de càrrega i errors, repetir consultes i comprovar termes de cerca.
+- `src/app/models/recepta-api.model.ts`: model de les dades rebudes de l'API.
+- `src/app/models/recepta.model.ts`: model intern de recepta.
+- `src/app/adapters/recepta.adapter.ts`: adaptador que normalitza les dades de l'API abans d'utilitzar-les a l'aplicació.
 
-- **ReceptaLlistaComponent:** mostra el llistat de receptes i gestiona els estats de llista amb resultats o sense resultats.
-- **ReceptaTargetaComponent:** mostra la informació de cada recepta i permet seleccionar-la.
-- **CategoriaEtiquetaComponent:** mostra la categoria d'una recepta.
-- **ReceptaFiltresComponent:** permet cercar receptes per nom o descripció i filtrar-les per categoria.
+## Formularis i validacions
 
-## Funcionalitats implementades
+El component `ReceptaFiltresComponent` utilitza formularis reactius amb `ReactiveFormsModule`.
 
-- Model de dades `Recepta` i dades de prova.
-- Comunicació entre components mitjançant propietats d'entrada i esdeveniments de sortida.
-- Cerca per nom o descripció i filtre per categoria.
-- Validació del formulari de cerca: camp obligatori i mínim de tres caràcters.
-- Restabliment dels filtres.
-- Visualització del nombre de receptes i missatge quan no hi ha resultats.
-- Selecció d'una recepta i visualització del seu detall.
-- Format de dates amb `DatePipe`.
-- Control de flux d'Angular amb `@if` i `@for`.
-- Accessibilitat: enllaç per saltar al contingut principal, etiquetes associades als camps, indicadors de focus i missatges accessibles.
-- Disseny responsive amb CSS Grid i regles `@media` per adaptar la interfície a pantalles petites.
+Inclou:
+
+- Cerca per nom o descripció.
+- Filtre per categoria.
+- Validació síncrona de longitud mínima de tres caràcters.
+- Validació asíncrona per comprovar si existeixen receptes relacionades amb el terme.
+- Espera de 500 ms abans de consultar l'API per evitar consultes excessives mentre s'escriu.
+- Missatges d'error i estat de comprovació.
+- Botó per netejar els filtres.
+- Historial de fins a cinc cerques desat a `localStorage`, amb recuperació de termes i prevenció de duplicats consecutius.
+
+## Components principals
+
+- `ReceptaLlistaComponent`: mostra el llistat de receptes.
+- `ReceptaTargetaComponent`: mostra la informació de cada recepta i permet seleccionar-la.
+- `CategoriaEtiquetaComponent`: mostra la categoria d'una recepta.
+- `ReceptaFiltresComponent`: gestiona la cerca, el filtre per categoria, les validacions i l'historial.
+
+## Gestió d'errors i accessibilitat
+
+L'aplicació mostra un missatge d'error quan no es pot accedir a l'API i ofereix el botó `Reintentar` per repetir l'última consulta.
+
+Les plantilles utilitzen el control de flux d'Angular (`@if`, `@else` i `@for`), etiquetes associades als camps de formulari i atributs accessibles com `role="status"`, `role="alert"` i `aria-live` quan correspon.
+
+El disseny utilitza CSS responsive per adaptar-se a pantalles d'escriptori i mòbil.
+
+## Documentació tècnica
+
+- `docs/serveis.md`: serveis HTTP, operacions, estats i gestió d'errors.
+- `docs/models.md`: models de dades i adaptadors.
+- `docs/formularis.md`: formularis reactius, validacions i historial de cerques.
 
 ## Branca de treball
 
-Branca utilitzada per al desenvolupament de l'EAC2:
+Branca de desenvolupament de l'EAC3:
 
 ```text
-ra2-components
+ra3-serveis
 ```
 
 ## Estat del projecte
 
 - **EAC1:** projecte Angular creat, configurat i personalitzat.
-- **EAC2:** model i dades de receptes, components, comunicació entre components, filtres, detall de receptes, accessibilitat i adaptació responsive.
+- **EAC2:** models, components, comunicació entre components, filtres, detall de receptes, accessibilitat i disseny responsive.
+- **EAC3:** API local amb `json-server`, serveis HTTP amb GET i POST, models i adaptadors, gestió d'estats i errors, formularis reactius, validació síncrona i asíncrona i historial de cerques.
 
 ## Repositori
 

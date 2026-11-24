@@ -1,21 +1,26 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReceptaLlista } from './recepta-llista.component';
+import { ReceptaLlistaComponent } from './recepta-llista.component';
 
-describe('ReceptaLlista', () => {
-  let component: ReceptaLlista;
-  let fixture: ComponentFixture<ReceptaLlista>;
+describe('ReceptaLlistaComponent', () => {
+  let component: ReceptaLlistaComponent;
+  let fixture: ComponentFixture<ReceptaLlistaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReceptaLlista],
+      imports: [ReceptaLlistaComponent]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ReceptaLlista);
+    fixture = TestBed.createComponent(ReceptaLlistaComponent);
+    fixture.componentRef.setInput('receptes', []);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('hauria de crear el component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('hauria de començar amb una llista buida', () => {
+    expect(component.receptes.length).toBe(0);
   });
 });
