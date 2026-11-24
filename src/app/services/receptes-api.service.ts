@@ -90,4 +90,25 @@ export class ReceptesApiService {
   reintentar(): void {
     this.reintents.next(this.ultimaConsulta);
   }
+
+
+  // Comprovar si existeixen receptes que coincideixin amb el terme
+  comprovarTerme(terme: string): Observable<boolean> {
+    return this.http.get<ReceptaApi[]>(`${API_BASE_URL}/receptes`).pipe(
+      map((dadesApi) => {
+        const cerca = terme.trim().toLocaleLowerCase();
+
+        return dadesApi.some((recepta) => {
+          const nom = recepta.nom ?? '';
+          const descripcio = recepta.descripcio ?? '';
+
+          return (
+            nom.toLocaleLowerCase().includes(cerca) ||
+            descripcio.toLocaleLowerCase().includes(cerca)
+          );
+        });
+      })
+    );
+  }
+
 }

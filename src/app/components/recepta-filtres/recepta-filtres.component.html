@@ -1,38 +1,55 @@
 
-<form #formulari="ngForm" class="filtres" (ngSubmit)="aplicarFiltre()">
+<form [formGroup]="formulari" class="filtres" (ngSubmit)="aplicarFiltre()">
+
   <div class="camp">
     <label for="textCerca">Cerca per nom o descripció:</label>
 
     <input
       id="textCerca"
-      name="textCerca"
       type="text"
-      [(ngModel)]="textCerca"
-      required
-      minlength="3"
-      #textCercaControl="ngModel"
+      formControlName="textCerca"
       placeholder="Escriu almenys 3 caràcters"
+      aria-describedby="missatge-cerca"
     />
 
-    @if (textCercaControl.invalid && (textCercaControl.dirty || textCercaControl.touched)) {
-      <p class="error" role="alert">
-        @if (textCercaControl.errors?.['required']) {
-          El text de cerca és obligatori.
-        } @else if (textCercaControl.errors?.['minlength']) {
-          El text de cerca ha de tenir com a mínim 3 caràcters.
+    <div id="missatge-cerca" aria-live="polite">
+
+      @if (
+        formulari.get('textCerca')?.dirty ||
+        formulari.get('textCerca')?.touched
+      ) {
+        @if (formulari.get('textCerca')?.errors?.['minlength']) {
+          <p class="error" role="alert">
+            El text de cerca ha de tenir com a mínim 3 caràcters.
+          </p>
         }
-      </p>
-    }
+
+        @if (formulari.get('textCerca')?.pending) {
+          <p role="status">
+            Comprovant si hi ha resultats...
+          </p>
+        }
+
+        @if (formulari.get('textCerca')?.errors?.['senseResultats']) {
+          <p class="error" role="alert">
+            No s'han trobat receptes amb aquest terme.
+          </p>
+        }
+
+        @if (formulari.get('textCerca')?.errors?.['errorConsulta']) {
+          <p class="error" role="alert">
+            No s'ha pogut comprovar la cerca. Torna-ho a provar.
+          </p>
+        }
+      }
+
+    </div>
   </div>
 
   <div class="camp">
     <label for="categoria">Filtra per categoria:</label>
 
-    <select
-      id="categoria"
-      name="categoria"
-      [(ngModel)]="categoriaSeleccionada"
-    >
+    <select id="categoria" formControlName="categoria">
       <option value="">Totes les categories</option>
 
       @for (categoria of categories; track categoria) {
@@ -42,12 +59,39 @@
   </div>
 
   <div class="accions">
-    <button type="submit" [disabled]="formulari.invalid">
+    <button
+      type="submit"
+      [disabled]="formulari.invalid || formulari.pending"
+    >
       Aplicar filtre
     </button>
 
-    <button type="button" class="boto-restablir" (click)="restablirFiltres()">
-      Restablir filtres
+    <button
+      type="button"
+      class="boto-restablir"
+      (click)="restablirFiltres()"
+    >
+      Netejar cerca
     </button>
   </div>
+
+  @if (historialCerques.length > 0) {
+    <section class="historial" aria-labelledby="titol-historial">
+      <h3 id="titol-historial">Historial de cerques</h3>
+
+      <ul>
+        @for (terme of historialCerques; track $index) {
+          <li>
+            <button
+              type="button"
+              (click)="recuperarCerca(terme)"
+            >
+              {{ terme }}
+            </button>
+          </li>
+        }
+      </ul>
+    </section>
+  }
+
 </form>
